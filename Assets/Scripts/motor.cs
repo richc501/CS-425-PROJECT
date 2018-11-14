@@ -7,6 +7,7 @@ using UnityEngine;
 public class motor : MonoBehaviour {
     private CharacterController controller;
     public Camera camera;
+    public bool mouseCam;
     public float turnSpeed;
     public float mouseSense;
     float cameraRotX;
@@ -44,6 +45,12 @@ public class motor : MonoBehaviour {
         turnSpeed = 90f;
         mouseSense = 2.5f;
         cameraRotX = 0f;
+
+        if (mouseCam == true)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 	
 	// Update is called once per frame
@@ -77,6 +84,19 @@ public class motor : MonoBehaviour {
 
         controller.Move(moveDirection * Time.deltaTime);
         lastDirection = moveDirection;
+
+        if (Input.GetKeyDown(KeyCode.F4) && mouseCam == false)
+        {
+            mouseCam = true;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else if (Input.GetKeyDown(KeyCode.F4) && mouseCam == true)
+        {
+            mouseCam = false;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     void UpdateJump()
