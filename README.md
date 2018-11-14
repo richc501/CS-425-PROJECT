@@ -2,5 +2,6 @@
 HARDCORE PARKOUR
 
 # Team members:
-## Leader: Richard Cunningham
-### Partner: Nicholas Anderson
+**Leader: Richard Cunningham**
+
+**Partner: Nicholas Anderson**
