@@ -124,14 +124,14 @@ public class motor : MonoBehaviour {
 
             motorState = MotorStates.Wallrunning;
 
-            if(rightWallRun)
-            {
-                camera.transform.Rotate(Vector3.forward, 10.0f * Time.deltaTime);
-            }
-            else if(leftWallRun)
-            {
-                camera.transform.Rotate(Vector3.forward, -10.0f * Time.deltaTime);
-            }
+            //if(rightWallRun)
+            //{
+            //    camera.transform.Rotate(Vector3.forward, 10.0f * Time.deltaTime);
+            //}
+            //else if(leftWallRun)
+            //{
+            //    camera.transform.Rotate(Vector3.forward, -10.0f * Time.deltaTime);
+            //}
 
 
             float previousJumpHeight = moveDirection.y;
