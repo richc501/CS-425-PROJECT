@@ -1178,6 +1178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 1811498069}
+  mouseCam: 1
   turnSpeed: 0
   mouseSense: 0
   BaseSpeed: 4
