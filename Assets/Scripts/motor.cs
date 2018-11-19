@@ -131,6 +131,12 @@ public class motor : MonoBehaviour {
         }
     }
 
+    void Update180Jump()
+    {
+        StandardCameraUpdate();
+
+    }
+
     void UpdateWallRun()
     {
         if (!controller.isGrounded && canWallRun && wallRunTime < wallRunMaxTime)
@@ -205,6 +211,7 @@ public class motor : MonoBehaviour {
 
     void UpdateWallClimb()
     {
+        
         if (!moveKeyDown)
         {
             climbTime = 0.0f;
@@ -221,7 +228,7 @@ public class motor : MonoBehaviour {
         if (canClimb && hit.collider != null &&
             climbTime < 0.5f && Vector3.Angle(forwardRay.direction, hit.normal) > 165)
         {
-
+            
             climbTime += Time.deltaTime;
 
             // Look up. Disabled for now.
@@ -240,6 +247,8 @@ public class motor : MonoBehaviour {
             {
                 LedgeGrab();
             }
+
+            
 
         }
         else
