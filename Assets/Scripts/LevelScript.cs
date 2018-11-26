@@ -7,14 +7,21 @@ public class LevelScript : MonoBehaviour {
     public bool south;
     public bool east;
     public bool west;
-    public GameObject next;
+    public bool spawnNorth;
+    public bool spawnSouth;
+    public bool spawnEast;
+    public bool spawnWest;
+    public GameObject[] allTiles;
+    public static GameObject[][] tiles;//make 2D, tiles[difficulty-level][random]
+
+    private GameObject next;
 
     // Use this for initialization
     void Start () {
         if (CheckAllObj())
         {
             //determine where to spawn
-
+            next = tiles[0][Random.Range(0, tiles[0].Length)];
             bool spawned = false;
             Vector3 pos = transform.position;
             int spawn = Random.Range(0, 3);
@@ -24,46 +31,67 @@ public class LevelScript : MonoBehaviour {
                 switch (spawn)
                 {
                     case 0://north
-                        pos += new Vector3(30, 0, 0);
-                        if (!CheckPos(pos))
+                        if (spawnNorth)
                         {
-                            spawned = false;
+                            pos += new Vector3(30, 0, 0);
+                            if (!CheckPos(pos))
+                            {
+                                spawned = false;
 
-                            spawn = Random.Range(1, 3);
+                                spawn = Random.Range(1, 3);
+                            }
+                            break;
                         }
-                        break;
+                        else
+                            goto case 1;
                     case 1://south
-                        pos += new Vector3(-30, 0, 0);
-                        if (!CheckPos(pos))
+                        if (spawnSouth)
                         {
-                            spawned = false;
-
-                            do
+                            pos += new Vector3(-30, 0, 0);
+                            if (!CheckPos(pos))
                             {
-                                spawn = Random.Range(0, 3);
-                            } while (spawn == 1);
+                                spawned = false;
+
+                                do
+                                {
+                                    spawn = Random.Range(0, 3);
+                                } while (spawn == 1);
+                            }
+                            break;
                         }
-                        break;
+                        else
+                            goto case 2;
                     case 2://east
-                        pos += new Vector3(0, 0, 30);
-                        if (!CheckPos(pos))
+                        if (spawnEast)
                         {
-                            spawned = false;
-
-                            do
+                            pos += new Vector3(0, 0, 30);
+                            if (!CheckPos(pos))
                             {
-                                spawn = Random.Range(0, 3);
-                            } while (spawn == 2);
+                                spawned = false;
+
+                                do
+                                {
+                                    spawn = Random.Range(0, 3);
+                                } while (spawn == 2);
+                            }
+                            break;
                         }
-                        break;
+                        else
+                            goto case 3;
                     case 3://west
-                        pos += new Vector3(0, 0, -30);
-                        if (!CheckPos(pos))
+                        if (spawnWest)
                         {
-                            spawned = false;
-                            spawn = Random.Range(0, 2);
+                            pos += new Vector3(0, 0, -30);
+                            if (!CheckPos(pos))
+                            {
+                                spawned = false;
+                                spawn = Random.Range(0, 2);
+                            }
+                            break;
+                        }else{
+                            Debug.Log("see if I can spwn something somewhere, otherwise pick new tile");
+                            break;
                         }
-                        break;
                 }
                 if (CheckPos(pos))
                 {
@@ -81,7 +109,7 @@ public class LevelScript : MonoBehaviour {
 
     void OnTriggerEnter(Collider player)
     {
-        //Debug.Log(player.gameObject.name);
+        /*Debug.Log(player.gameObject.name);
         //if (player.gameObject.name != "TennisBall")
         //    return;
         //determine where to spawn
@@ -142,14 +170,17 @@ public class LevelScript : MonoBehaviour {
         //    }
 
         //}
-        //GameObject lvl = Instantiate(next, pos, new Quaternion()) as GameObject;
-
+        GameObject lvl = Instantiate(next, pos, new Quaternion()) as GameObject;*/
     }
 
     // Update is called once per frame
     void Update () {
-		
+
 	}
+
+  public bool spawnNext(int direction){
+    return true;
+  }
 
     bool CheckPos(Vector3 pos)
     {
