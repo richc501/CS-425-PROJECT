@@ -131,6 +131,12 @@ public class motor : MonoBehaviour {
         }
     }
 
+    void Update180Jump()
+    {
+        StandardCameraUpdate();
+
+    }
+
     void UpdateWallRun()
     {
         if (!controller.isGrounded && canWallRun && wallRunTime < wallRunMaxTime)
@@ -144,14 +150,16 @@ public class motor : MonoBehaviour {
 
             motorState = MotorStates.Wallrunning;
 
-            //if(rightWallRun)
-            //{
-            //    camera.transform.Rotate(Vector3.forward, 10.0f * Time.deltaTime);
-            //}
-            //else if(leftWallRun)
-            //{
-            //    camera.transform.Rotate(Vector3.forward, -10.0f * Time.deltaTime);
-            //}
+            if (rightWallRun)
+            {
+                //camera.transform.Rotate(Vector3.forward, 10.0f * Time.deltaTime);
+                Debug.Log("WALL RUN RIGHT");
+            }
+            else if (leftWallRun)
+            {
+                //camera.transform.Rotate(Vector3.forward, -10.0f * Time.deltaTime);
+                Debug.Log("WALL RUN LEFT");
+            }
 
 
             float previousJumpHeight = moveDirection.y;
@@ -205,6 +213,7 @@ public class motor : MonoBehaviour {
 
     void UpdateWallClimb()
     {
+        
         if (!moveKeyDown)
         {
             climbTime = 0.0f;
@@ -221,7 +230,7 @@ public class motor : MonoBehaviour {
         if (canClimb && hit.collider != null &&
             climbTime < 0.5f && Vector3.Angle(forwardRay.direction, hit.normal) > 165)
         {
-
+            
             climbTime += Time.deltaTime;
 
             // Look up. Disabled for now.
@@ -240,6 +249,8 @@ public class motor : MonoBehaviour {
             {
                 LedgeGrab();
             }
+
+            
 
         }
         else
@@ -326,15 +337,18 @@ public class motor : MonoBehaviour {
         bool rightImpact = Physics.Raycast(rayRight.origin, rayRight.direction, out wallImpactRight, 1f);
         bool leftImpact = Physics.Raycast(rayLeft.origin, rayLeft.direction, out wallImpactLeft, 1f);
 
-        bool rightWallRun = rightImpact;
-        bool leftWallRun = leftImpact;
+
 
         if (rightImpact && Vector3.Angle(transform.TransformDirection(Vector3.forward), wallImpactRight.normal) > 90)
         {
+            rightWallRun = true;
+            leftWallRun = false;
             return wallImpactRight;
         }
         else if (leftImpact && Vector3.Angle(transform.TransformDirection(Vector3.forward), wallImpactLeft.normal) > 90)
         {
+            rightWallRun = false;
+            leftWallRun = true;
             wallImpactLeft.normal *= -1;
             return wallImpactLeft;
         }
