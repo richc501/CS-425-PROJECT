@@ -25,6 +25,8 @@ public class LevelScript : MonoBehaviour {
             bool spawned = false;
             Vector3 pos = transform.position;
             int spawn = Random.Range(0, 3);
+            int size = (int)next.transform.GetComponent<Renderer>().bounds.size.x;
+            Debug.Log("HELLO SIZE: " + size);
             while (!spawned)
             {
 
