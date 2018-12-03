@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelScript : MonoBehaviour {
-    public bool north;
-    public bool south;
-    public bool east;
-    public bool west;
+public class LevelScript2 : MonoBehaviour {
+    
+	// Use this for initialization
+    //public bool north;
+    //public bool south;
+    //public bool east;
+    //public bool west;
     public bool spawnNorth;
     public bool spawnSouth;
     public bool spawnEast;
@@ -15,9 +17,14 @@ public class LevelScript : MonoBehaviour {
     public static GameObject[][] tiles;//make 2D, tiles[difficulty-level][random]
 
     private GameObject next;
+    private Renderer r;
     private Vector3 size;
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
+        r = GetComponent<Renderer>();
+        size = r.bounds.size;
+        Debug.Log("Render Size: " + size);
         if (CheckAllObj())
         {
             //determine where to spawn
@@ -35,7 +42,7 @@ public class LevelScript : MonoBehaviour {
                     case 0://north
                         if (spawnNorth)
                         {
-                            pos += new Vector3(30, 0, 0);
+                            pos += new Vector3(size.x, 0, 0);
                             if (!CheckPos(pos))
                             {
                                 spawned = false;
@@ -49,7 +56,7 @@ public class LevelScript : MonoBehaviour {
                     case 1://south
                         if (spawnSouth)
                         {
-                            pos += new Vector3(-30, 0, 0);
+                            pos += new Vector3(-size.x, 0, 0);
                             if (!CheckPos(pos))
                             {
                                 spawned = false;
@@ -66,7 +73,7 @@ public class LevelScript : MonoBehaviour {
                     case 2://east
                         if (spawnEast)
                         {
-                            pos += new Vector3(0, 0, 30);
+                            pos += new Vector3(0, 0, size.z);
                             if (!CheckPos(pos))
                             {
                                 spawned = false;
@@ -83,14 +90,16 @@ public class LevelScript : MonoBehaviour {
                     case 3://west
                         if (spawnWest)
                         {
-                            pos += new Vector3(0, 0, -30);
+                            pos += new Vector3(0, 0, -size.z);
                             if (!CheckPos(pos))
                             {
                                 spawned = false;
                                 spawn = Random.Range(0, 3);
                             }
                             break;
-                        }else{
+                        }
+                        else
+                        {
                             Debug.Log("see if I can spwn something somewhere, otherwise pick new tile");
                             break;
                         }
@@ -110,13 +119,15 @@ public class LevelScript : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
-        
+    void Update()
+    {
+
     }
 
-  public bool spawnNext(int direction){
-    return true;
-  }
+    public bool spawnNext(int direction)
+    {
+        return true;
+    }
 
     bool CheckPos(Vector3 pos)
     {
@@ -129,9 +140,9 @@ public class LevelScript : MonoBehaviour {
 
     bool CheckAllObj()
     {
-        Vector3 origin =  new Vector3(0,0,0);
+        Vector3 origin = new Vector3(0, 0, 0);
         Collider[] hit = Physics.OverlapSphere(origin, 10000);
-        if(hit.Length>500)
+        if (hit.Length > 500)
         {
             return false;
         }
@@ -141,3 +152,4 @@ public class LevelScript : MonoBehaviour {
         }
     }
 }
+

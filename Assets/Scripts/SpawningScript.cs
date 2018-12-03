@@ -73,6 +73,8 @@ public class SpawningScript : MonoBehaviour
             next = tiles[difficulty][Random.Range(0, tiles[difficulty].Length)];
         //determine where to spawn
         int spawn = 0;
+        Vector3 size = next.GetComponent<Renderer>().bounds.size;
+        //Debug.Log(size);
         do
         {
             spawn = Random.Range(p.min, p.max);
@@ -80,21 +82,23 @@ public class SpawningScript : MonoBehaviour
         bool spawned = false;
         while (!spawned)
         {
+            float currentSize = 0;
             //determine where to spawn based on the direction
             switch (spawn)
             {
                 case 0://north
-                    pos += new Vector3(30, 0, 0);
-                    if (!CheckPos(pos))
+                    pos += new Vector3(size.x, 0, 0);
+                    if (!CheckPos(pos, size.x))
                     {
                         spawned = false;
 
                         spawn = Random.Range(1, 4);
                     }
+                    currentSize = size.x;
                     break;
                 case 1://south
-                    pos += new Vector3(-30, 0, 0);
-                    if (!CheckPos(pos))
+                    pos += new Vector3(-size.x, 0, 0);
+                    if (!CheckPos(pos, size.x))
                     {
                         spawned = false;
 
@@ -103,11 +107,12 @@ public class SpawningScript : MonoBehaviour
                             spawn = Random.Range(0, 4);
                         } while (spawn == 1);
                     }
+                    currentSize = size.x;
                     break;
 
                 case 2://east
-                    pos += new Vector3(0, 0, 30);
-                    if (!CheckPos(pos))
+                    pos += new Vector3(0, 0, size.z);
+                    if (!CheckPos(pos, size.z))
                     {
                         spawned = false;
 
@@ -116,19 +121,21 @@ public class SpawningScript : MonoBehaviour
                             spawn = Random.Range(0, 4);
                         } while (spawn == 2);
                     }
+                    currentSize = size.z;
                     break;
 
                 case 3://west
-                    pos += new Vector3(0, 0, -30);
-                    if (!CheckPos(pos))
+                    pos += new Vector3(0, 0, -size.z);
+                    if (!CheckPos(pos, size.z))
                     {
                         spawned = false;
                         spawn = Random.Range(0, 3);
                     }
+                    currentSize = size.z;
                     break;
 
             }
-            if (CheckPos(pos))
+            if (CheckPos(pos, currentSize))
             {
                 spawned = true;
             }
@@ -142,9 +149,9 @@ public class SpawningScript : MonoBehaviour
     }
 
     //check if the given position is empty, if it is return false;
-    bool CheckPos(Vector3 pos)
+    bool CheckPos(Vector3 pos, float size)
     {
-        Collider[] hit = Physics.OverlapSphere(pos, 20);
+        Collider[] hit = Physics.OverlapSphere(pos, size);
         //if we didn't hit anything return true;
         if (hit.Length == 0)
             return false;
