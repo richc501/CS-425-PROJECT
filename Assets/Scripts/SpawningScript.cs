@@ -142,7 +142,9 @@ public class SpawningScript : MonoBehaviour
 
 
         }
-        GameObject lvl = Instantiate(next, pos, new Quaternion()) as GameObject;
+        GameObject lvl;
+        if(pos != new Vector3(0, 0, 0))
+            lvl = Instantiate(next, pos, new Quaternion()) as GameObject;
         //set the new position for the path
         p.pos = pos;
         return pos;
