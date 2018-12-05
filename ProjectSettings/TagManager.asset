@@ -4,7 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Collider
+  - Triggerer
+  - Grass
+  - Stone
   layers:
   - Default
   - TransparentFX
@@ -14,8 +16,6 @@ TagManager:
   - UI
   - 
   - 
-  - Minimap
-  - Level
   - 
   - 
   - 
@@ -29,15 +29,17 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - MovableObject
+  - Ragdoll
+  - RemotePlayer
+  - IgnoreBullets
+  - Enemy
+  - Pickup
+  - Trigger
+  - MovingPlatform
+  - Debris
+  - LocalPlayer
+  - Weapon
   m_SortingLayers:
   - name: Default
     uniqueID: 0
