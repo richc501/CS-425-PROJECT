@@ -16,7 +16,7 @@ public class motor : MonoBehaviour {
     public float BaseSpeed = 4.0f;
     public float JumpSpeed = 8.0f;
     public float Gravity = 20.0f;
-
+    public float maxClimbTime = 0.5f;
     public float RunSpeedIncrease = 10.0f;
 
     public float RampUpTime = 0.75f;
@@ -131,11 +131,11 @@ public class motor : MonoBehaviour {
         }
     }
 
-    void Update180Jump()
-    {
-        StandardCameraUpdate();
+    //void Update180Jump()
+    //{
+    //    StandardCameraUpdate();
 
-    }
+    //}
 
     void UpdateWallRun()
     {
@@ -228,7 +228,7 @@ public class motor : MonoBehaviour {
 
         RaycastHit hit = DoWallClimbCheck(forwardRay);
         if (canClimb && hit.collider != null &&
-            climbTime < 0.5f && Vector3.Angle(forwardRay.direction, hit.normal) > 165)
+            climbTime < maxClimbTime && Vector3.Angle(forwardRay.direction, hit.normal) > 165)
         {
             
             climbTime += Time.deltaTime;
