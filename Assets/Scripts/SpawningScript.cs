@@ -18,7 +18,7 @@ public class SpawningScript : MonoBehaviour
     //used for picking a random tile
     private GameObject[][] tiles;//make 2D, tiles[difficulty-level][random]
     private GameObject next;//next tile to spawn
-    private const int max = 100;//max tiles to spawn till goal is next
+    private const int max = 30;//max tiles to spawn till goal is next
     public GameObject goal;
 
     //defines a path with its tendecies to go one direction
