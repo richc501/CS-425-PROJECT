@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23573522378928062}
   - component: {fileID: 65612797470513700}
   - component: {fileID: 54140260925014324}
+  - component: {fileID: 114277891190774744}
   m_Layer: 0
   m_Name: Level-Blue
   m_TagString: Untagged
@@ -112,3 +113,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114277891190774744
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1612763710005564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbac6b3417f519845971097d4529985f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: {fileID: 1922685333834346, guid: 476af3a42f406de44af55bed376e3514, type: 2}
+  yIncrease: 0
