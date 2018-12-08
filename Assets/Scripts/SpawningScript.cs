@@ -92,18 +92,18 @@ public class SpawningScript : MonoBehaviour
             switch (spawn)
             {
                 case 0://north
-                    pos += new Vector3(size.x, 0, 0);
-                    if (!CheckPos(pos, size.x))
+                    pos += new Vector3(300, 0, 0);
+                    if (!CheckPos(pos, 300))
                     {
                         spawned = false;
 
                         spawn = Random.Range(1, 4);
                     }
-                    currentSize = size.x;
+                    currentSize = 300;
                     break;
                 case 1://south
-                    pos += new Vector3(-size.x, 0, 0);
-                    if (!CheckPos(pos, size.x))
+                    pos += new Vector3(-300, 0, 0);
+                    if (!CheckPos(pos, 300))
                     {
                         spawned = false;
 
@@ -112,12 +112,12 @@ public class SpawningScript : MonoBehaviour
                             spawn = Random.Range(0, 4);
                         } while (spawn == 1);
                     }
-                    currentSize = size.x;
+                    currentSize = 300;
                     break;
 
                 case 2://east
-                    pos += new Vector3(0, 0, size.z);
-                    if (!CheckPos(pos, size.z))
+                    pos += new Vector3(0, 0, 300);
+                    if (!CheckPos(pos, 300))
                     {
                         spawned = false;
 
@@ -126,17 +126,17 @@ public class SpawningScript : MonoBehaviour
                             spawn = Random.Range(0, 4);
                         } while (spawn == 2);
                     }
-                    currentSize = size.z;
+                    currentSize = 300;
                     break;
 
                 case 3://west
-                    pos += new Vector3(0, 0, -size.z);
-                    if (!CheckPos(pos, size.z))
+                    pos += new Vector3(0, 0, -300);
+                    if (!CheckPos(pos, 300))
                     {
                         spawned = false;
                         spawn = Random.Range(0, 3);
                     }
-                    currentSize = size.z;
+                    currentSize = 300;
                     break;
 
             }
@@ -158,7 +158,8 @@ public class SpawningScript : MonoBehaviour
     //check if the given position is empty, if it is return false;
     bool CheckPos(Vector3 pos, float size)
     {
-        Collider[] hit = Physics.OverlapSphere(pos, size);
+        Collider[] hit = Physics.OverlapBox(pos, new Vector3(300,300,300));
+        Debug.Log(pos + " " + hit.Length.ToString());
         //if we didn't hit anything return true;
         if (hit.Length == 0)
             return false;
