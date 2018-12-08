@@ -11,7 +11,12 @@ public class DeathScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (transform.position.y<-20)
+        if (transform.position.y < -20)
+        {
             SceneManager.LoadScene("dead");
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
+        }
     }
 }
