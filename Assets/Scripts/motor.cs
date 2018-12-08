@@ -15,14 +15,14 @@ public class motor : MonoBehaviour {
     private Vector3 lastDirection;
     public float BaseSpeed = 4.0f;
     public float JumpSpeed = 8.0f;
-    public float Gravity = 20.0f;
+    public float Gravity = 15.0f;
     public float maxClimbTime = 0.5f;
     public float RunSpeedIncrease = 10.0f;
 
     public float RampUpTime = 0.75f;
     private bool moveKeyDown = false;
     private float moveDownTime = 0f;
-    private float friction = 15.0f;
+    private float friction = 90.0f;
 
     private MotorStates motorState = MotorStates.Default;
 
@@ -180,7 +180,7 @@ public class motor : MonoBehaviour {
             else
             {
                 moveDirection.y = previousJumpHeight;
-                moveDirection.y -= (Gravity / 4) * Time.deltaTime;
+                moveDirection.y -= (Gravity / 2) * Time.deltaTime;
             }
 
             if(Input.GetButton("Jump"))

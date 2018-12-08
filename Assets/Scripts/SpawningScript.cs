@@ -22,50 +22,55 @@ public class SpawningScript : MonoBehaviour
     public GameObject goal;
 
     //defines a path with its tendecies to go one direction
-    class Path {
+    class Path
+    {
         public Vector3 pos;
         public int min;
         public int max;
         public int[] exclusions;
 
-        public Path(Vector3 pos, int min, int max,int[] exclusions) {
+        public Path(Vector3 pos, int min, int max, int[] exclusions)
+        {
             this.pos = pos;
             this.min = min;
             this.max = max;
             this.exclusions = exclusions;
         }
 
-        public void SetPos(Vector3 pos) {
+        public void SetPos(Vector3 pos)
+        {
             this.pos = pos;
         }
     }
 
     // Use this for initialization
-    void Start(){
+    void Start()
+    {
         //make 2D array of size[numOfLevels][determined at runtime]
         tiles = new GameObject[folders.Length][];
 
         //load the tiles into the correct arrays
-        for(int i = 0; i < folders.Length; i++)
+        for (int i = 0; i < folders.Length; i++)
             tiles[i] = Resources.LoadAll(folders[i], typeof(GameObject)).Cast<GameObject>().ToArray();
 
         List<Path> positions = new List<Path>();
         //add the default path, tending towards east
-        positions.Add(new Path(transform.position,0,3,new int[0]));
+        positions.Add(new Path(transform.position, 0, 3, new int[0]));
         int numSpawned = 0;
         while (numSpawned <= max + 1)
         {
             for (int i = 0; i < positions.Count; i++)
                 if (i == 0 && Random.Range(1, 100) < 10)
-                    positions.Add(new Path(spawnNext(positions[i], numSpawned), 0, 4, new int[2]{0,2}));
+                    positions.Add(new Path(spawnNext(positions[i], numSpawned), 0, 4, new int[2] { 0, 2 }));
                 else
                     positions[i].SetPos(spawnNext(positions[i], numSpawned));
-            
+
             numSpawned++;
         }
     }
 
-    Vector3 spawnNext(Path p, int numSpawned) {
+    Vector3 spawnNext(Path p, int numSpawned)
+    {
         Vector3 pos = p.pos;
         if (numSpawned == max + 1)
             next = goal;
@@ -87,18 +92,18 @@ public class SpawningScript : MonoBehaviour
             switch (spawn)
             {
                 case 0://north
-                    pos += new Vector3(size.x, 0, 0);
-                    if (!CheckPos(pos, size.x))
+                    pos += new Vector3(300, 0, 0);
+                    if (!CheckPos(pos, 300))
                     {
                         spawned = false;
 
                         spawn = Random.Range(1, 4);
                     }
-                    currentSize = size.x;
+                    currentSize = 300;
                     break;
                 case 1://south
-                    pos += new Vector3(-size.x, 0, 0);
-                    if (!CheckPos(pos, size.x))
+                    pos += new Vector3(-300, 0, 0);
+                    if (!CheckPos(pos, 300))
                     {
                         spawned = false;
 
@@ -107,12 +112,12 @@ public class SpawningScript : MonoBehaviour
                             spawn = Random.Range(0, 4);
                         } while (spawn == 1);
                     }
-                    currentSize = size.x;
+                    currentSize = 300;
                     break;
 
                 case 2://east
-                    pos += new Vector3(0, 0, size.z);
-                    if (!CheckPos(pos, size.z))
+                    pos += new Vector3(0, 0, 300);
+                    if (!CheckPos(pos, 300))
                     {
                         spawned = false;
 
@@ -121,17 +126,17 @@ public class SpawningScript : MonoBehaviour
                             spawn = Random.Range(0, 4);
                         } while (spawn == 2);
                     }
-                    currentSize = size.z;
+                    currentSize = 300;
                     break;
 
                 case 3://west
-                    pos += new Vector3(0, 0, -size.z);
-                    if (!CheckPos(pos, size.z))
+                    pos += new Vector3(0, 0, -300);
+                    if (!CheckPos(pos, 300))
                     {
                         spawned = false;
                         spawn = Random.Range(0, 3);
                     }
-                    currentSize = size.z;
+                    currentSize = 300;
                     break;
 
             }
@@ -143,7 +148,7 @@ public class SpawningScript : MonoBehaviour
 
         }
         GameObject lvl;
-        if(pos != new Vector3(0, 0, 0))
+        if (pos != new Vector3(0, 0, 0))
             lvl = Instantiate(next, pos, new Quaternion()) as GameObject;
         //set the new position for the path
         p.pos = pos;
@@ -153,7 +158,8 @@ public class SpawningScript : MonoBehaviour
     //check if the given position is empty, if it is return false;
     bool CheckPos(Vector3 pos, float size)
     {
-        Collider[] hit = Physics.OverlapSphere(pos, size);
+        Collider[] hit = Physics.OverlapBox(pos, new Vector3(300,300,300));
+        Debug.Log(pos + " " + hit.Length.ToString());
         //if we didn't hit anything return true;
         if (hit.Length == 0)
             return false;
