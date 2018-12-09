@@ -28,10 +28,12 @@ public class shootGun : MonoBehaviour {
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out shot))
                 {
                     targetDistance = shot.distance;
-                    Vector3 endPoint = shot.point;
-                    lr.SetPosition(0, transform.position);
-                    lr.SetPosition(1, endPoint);
-                    Instantiate(bulletHole, shot.point, Quaternion.FromToRotation(Vector3.up, shot.normal));
+                    //Vector3 endPoint = shot.point;
+                    //lr.SetPosition(0, transform.position);
+                    //lr.SetPosition(1, endPoint);
+                    GameObject hole = Instantiate(bulletHole, shot.point, Quaternion.FromToRotation(Vector3.up, shot.normal));
+                    hole.transform.SetParent(shot.transform);
+
                     if (targetDistance < maxDistance)
                     {
                         shot.transform.SendMessage("DoDamage", damageAmount, SendMessageOptions.DontRequireReceiver);
