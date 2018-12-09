@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4764067138479364}
   - component: {fileID: 33805544836907738}
   - component: {fileID: 23897566164571158}
-  - component: {fileID: 64818604107835392}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -115,20 +114,6 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1025097060775662}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!64 &64818604107835392
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1025097060775662}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!82 &82543315031025926
 AudioSource:
