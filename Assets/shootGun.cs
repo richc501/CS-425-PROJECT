@@ -9,6 +9,7 @@ public class shootGun : MonoBehaviour {
     public float maxDistance = 15;
     public LineRenderer lr;
     public RectTransform ammoClipText;
+    public GameObject bulletHole;
     // Use this for initialization
     void Start () {
         lr = GetComponent<LineRenderer>();
@@ -18,6 +19,7 @@ public class shootGun : MonoBehaviour {
 	void Update () {
         int ammoClipSize = 0;
         int.TryParse(ammoClipText.GetComponent<Text>().text, out ammoClipSize);
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * maxDistance, Color.green);
         if (ammoClipSize>0)
         {
             if (Input.GetButtonDown("Fire1"))
@@ -29,10 +31,12 @@ public class shootGun : MonoBehaviour {
                     Vector3 endPoint = shot.point;
                     lr.SetPosition(0, transform.position);
                     lr.SetPosition(1, endPoint);
+                    Instantiate(bulletHole, shot.point, Quaternion.FromToRotation(Vector3.up, shot.normal));
                     if (targetDistance < maxDistance)
                     {
                         shot.transform.SendMessage("DoDamage", damageAmount, SendMessageOptions.DontRequireReceiver);
                     }
+                    
                 }
             }
         }
