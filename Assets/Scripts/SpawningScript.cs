@@ -85,86 +85,79 @@ public class SpawningScript : MonoBehaviour
             spawn = Random.Range(p.min, p.max);
         } while (p.exclusions.Contains<int>(spawn));
         bool spawned = false;
+        int i = 0;
         while (!spawned)
         {
-            float currentSize = 0;
             //determine where to spawn based on the direction
             switch (spawn)
             {
                 case 0://north
-                    pos += new Vector3(300, 0, 0);
-                    if (!CheckPos(pos, 300))
-                    {
-                        spawned = false;
-
-                        spawn = Random.Range(1, 4);
+                    Debug.Log("0");
+                    if (empty(pos + new Vector3(300, 0, 0))){
+                        pos += new Vector3(300, 0, 0);
+                        spawned = true;
+                        
+                        Debug.Log("Empty");
                     }
-                    currentSize = 300;
+                    else
+                        spawn = Random.Range(1, 4);
                     break;
                 case 1://south
-                    pos += new Vector3(-300, 0, 0);
-                    if (!CheckPos(pos, 300))
-                    {
-                        spawned = false;
-
-                        do
-                        {
+                    Debug.Log("1");
+                    if (empty(pos + new Vector3(-300, 0, 0))){
+                        pos += new Vector3(-300, 0, 0);
+                        spawned = true;
+                    }
+                    else
+                        do{
                             spawn = Random.Range(0, 4);
                         } while (spawn == 1);
-                    }
-                    currentSize = 300;
                     break;
 
                 case 2://east
-                    pos += new Vector3(0, 0, 300);
-                    if (!CheckPos(pos, 300))
-                    {
-                        spawned = false;
+                    Debug.Log("2");
+                    if (empty(pos + new Vector3(0, 0, 300))){
+                        pos += new Vector3(0, 0, 300);
+                        spawned = true;
 
-                        do
-                        {
+                    }else
+                        do{
                             spawn = Random.Range(0, 4);
                         } while (spawn == 2);
-                    }
-                    currentSize = 300;
+
                     break;
 
                 case 3://west
-                    pos += new Vector3(0, 0, -300);
-                    if (!CheckPos(pos, 300))
-                    {
-                        spawned = false;
+                    Debug.Log("3");
+                    if (empty(pos + new Vector3(0, 0, -300))){
+                        pos += new Vector3(0, 0, -300);
+                        spawned = true;
+                    }else
                         spawn = Random.Range(0, 3);
-                    }
-                    currentSize = 300;
                     break;
 
             }
-            if (CheckPos(pos, currentSize))
-            {
-                spawned = true;
-            }
-
-
+            if (i++ == 10)
+                break;
         }
-        GameObject lvl;
-        if (pos != new Vector3(0, 0, 0))
-            lvl = Instantiate(next, pos, new Quaternion()) as GameObject;
+        Instantiate(next, pos, new Quaternion());
         //set the new position for the path
         p.pos = pos;
         return pos;
     }
 
     //check if the given position is empty, if it is return false;
-    bool CheckPos(Vector3 pos, float size)
+    bool empty(Vector3 pos)
     {
-        Collider[] hit = Physics.OverlapBox(pos, new Vector3(300,300,300));
-        Debug.Log(pos + " " + hit.Length.ToString());
+        Collider[] hit = Physics.OverlapSphere(pos, 149);
         //if we didn't hit anything return true;
         if (hit.Length == 0)
-            return false;
-        else
             return true;
+        else { 
+            Debug.Log("Position: " + pos.ToString() + "Occupied");
+            return false;
+        }
+            
     }
 
 }
