@@ -52,9 +52,14 @@ public class vp_Shell : MonoBehaviour
 		m_Audio.dopplerLevel = 0.0f;
 
 	}
-	
-	
-	void OnEnable()
+
+    void Start()
+    {
+        m_Rigidbody.AddForce(transform.up * 20f);
+    }
+
+
+    void OnEnable()
 	{
 	
 		m_RestAngleFunc = null;
