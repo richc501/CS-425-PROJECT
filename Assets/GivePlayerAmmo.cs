@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealPlayer : MonoBehaviour {
-    public GameObject healObject;
-    public GameObject healBox;
-    public float minHealthGain = 10;
-    public float maxHealthGain = 26;
-    private bool playerHealed = false;
+public class GivePlayerAmmo : MonoBehaviour {
     public float radius = 5f;
-    public AudioSource playPickUp;
+    private bool playerAmmoReceived = false;
+    private AudioSource playPickUp;
     public AudioClip sound;
-	// Use this for initialization
-	void Start () {
+    public GameObject gunObject;
+    public GameObject ammo;
+    public float minAmmoGain = 20;
+    public float maxAmmoGain = 60;
+    // Use this for initialization
+    void Start () {
         playPickUp = GetComponent<AudioSource>();
-
 	}
 	
 	// Update is called once per frame
@@ -24,12 +23,12 @@ public class HealPlayer : MonoBehaviour {
         {
             if (nearByObj.tag.ToString().Equals("Player"))
             {
-                if (!playerHealed)
+                if (!playerAmmoReceived)
                 {
-                    playerHealed = true;
+                    playerAmmoReceived = true;
                     playPickUp.PlayOneShot(sound);
-                    healObject.GetComponent<healthObject>().DoHealOnPlayer((int)Random.Range(minHealthGain, maxHealthGain));
-                    Destroy(healBox);
+                    gunObject.GetComponent<GunFire>().IncreaseAmmo((int)Random.Range(minAmmoGain, maxAmmoGain));
+                    Destroy(ammo);
                     Destroy(gameObject, 5f);
                 }
                 break;

@@ -76,9 +76,14 @@ public class GunFire : MonoBehaviour {
         }
 	}
 
-    void reloadGun()
+    public void IncreaseAmmo(int amountIncreased)
     {
-
+        ammoInBag += amountIncreased;
+        if(ammoInBag>999)
+        {
+            ammoInBag = 999;
+        }
+        ammoBagText.GetComponent<Text>().text = ammoInBag.ToString();
     }
 }
 

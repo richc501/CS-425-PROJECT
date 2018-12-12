@@ -9,7 +9,7 @@ public class blowUpMine : MonoBehaviour {
     private bool playerDamaged = false;
     public float maxtime = 3f;
     public float timer = 3f;
-    public float checkRadius = 1f;
+    public float checkRadius = 2f;
     public float blastRadius = 5f;
     public GameObject Explosion;
     public GameObject healObject;
