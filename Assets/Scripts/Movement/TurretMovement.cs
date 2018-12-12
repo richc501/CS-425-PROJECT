@@ -39,6 +39,7 @@ public class TurretMovement : MonoBehaviour {
             spotted = false;
 
         Debug.DrawRay(transform.position, target.transform.position, Color.blue);
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 100, Color.red);
 
         RaycastHit hit;
         if (Physics.Linecast(transform.position, target.transform.position, out hit)) {
@@ -51,6 +52,7 @@ public class TurretMovement : MonoBehaviour {
             shoot();
 
         Debug.Log(spotted);
+        Debug.DrawRay(transform.position, target.transform.position, Color.blue);
     }
 
     void shoot(){
