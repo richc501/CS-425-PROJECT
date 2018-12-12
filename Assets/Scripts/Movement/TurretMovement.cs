@@ -38,6 +38,8 @@ public class TurretMovement : MonoBehaviour {
         if (turret.transform.rotation.y <= 0 || gun.transform.rotation.z <= -2 || gun.transform.rotation.z >= 2)
             spotted = false;
 
+        Debug.DrawRay(transform.position, target.transform.position, Color.blue);
+
         RaycastHit hit;
         if (Physics.Linecast(transform.position, target.transform.position, out hit)) {
             if (hit.transform.tag != "Player")
@@ -47,10 +49,12 @@ public class TurretMovement : MonoBehaviour {
         tiltGun(step);
         if(spotted)
             shoot();
+
+        Debug.Log(spotted);
     }
 
     void shoot(){
-
+        Debug.Log("SHOOT");
     }
 
     void rotateGun(float step){
