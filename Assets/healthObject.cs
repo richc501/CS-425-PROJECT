@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class healthObject : MonoBehaviour {
-    public int health = 100;
+    public float health = 100;
     public int overHealth = 50;
     public RectTransform healthTransform;
     private Text healthText;
@@ -16,17 +16,21 @@ public class healthObject : MonoBehaviour {
 
     void LateUpdate()
     {
-        if(health>(health+overHealth))
+        if(health>100)
         {
-            health--;
-            healthText.text = health.ToString();
+            health -= Time.deltaTime;
+            if(health<100)
+            {
+                health = 100;
+            }
+            healthText.text = ((int)health).ToString();
         }
     }
 
     public void DoDamageOnPlayer(int damageAmount)
     {
         health -= damageAmount;
-        healthText.text = health.ToString();
+        healthText.text = ((int)health).ToString();
         if (health<0)
         {
             health = 1;
@@ -37,7 +41,7 @@ public class healthObject : MonoBehaviour {
     public void DoHealOnPlayer(int healAmount)
     {
         health += healAmount;
-        healthText.text = health.ToString();
+        healthText.text = ((int)health).ToString();
     }
 
     void dead()

@@ -7,9 +7,10 @@ public class blowUpMine : MonoBehaviour {
     private bool hasExploded = false;
     private bool playerNearBy = false;
     private bool playerDamaged = false;
-    public float maxtime = 10f;
-    private float timer = 5f;
-    public float radius = 10f;
+    public float maxtime = 3f;
+    public float timer = 3f;
+    public float checkRadius = 1f;
+    public float blastRadius = 5f;
     public GameObject Explosion;
     public GameObject healObject;
     public GameObject mineObj;
@@ -22,7 +23,7 @@ public class blowUpMine : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, checkRadius);
         if(playerNearBy)
         {
             timer -= Time.deltaTime;
@@ -37,11 +38,11 @@ public class blowUpMine : MonoBehaviour {
                     mineObj.GetComponent<MakeMineBeep>().Beep(mineSounds[0]);
                     break;
                 }
-                else
-                {
-                    playerNearBy = false;
-                    timer = maxtime;
-                }
+                //else
+                //{
+                //    playerNearBy = false;
+                //    timer = maxtime;
+                //}
             }
         }
 
@@ -60,7 +61,7 @@ public class blowUpMine : MonoBehaviour {
         hasExploded = true;
         GameObject boom = Instantiate(Explosion, transform.position, transform.rotation);
         mineSoundEmmiter.PlayOneShot(mineSounds[1]);
-        Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, blastRadius);
         foreach (Collider nearByObj in colliders)
         {
             if (nearByObj.tag.ToString().Equals("Player"))
