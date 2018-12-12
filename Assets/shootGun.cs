@@ -25,7 +25,10 @@ public class shootGun : MonoBehaviour {
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                Instantiate(bullet, transform.position, new Quaternion());
+
+                GameObject Bullet = Instantiate(bullet, transform.position, new Quaternion());
+                Bullet.transform.rotation = transform.rotation;
+                Bullet.transform.Rotate(90, 0, 0);
 
                 RaycastHit shot;
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out shot))
