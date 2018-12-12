@@ -22,7 +22,9 @@ GameObject:
   - component: {fileID: 33887030708851986}
   - component: {fileID: 23232941952805758}
   - component: {fileID: 95757998027168516}
-  - component: {fileID: 114312687664007696}
+  - component: {fileID: 54697090824314514}
+  - component: {fileID: 65578677575402244}
+  - component: {fileID: 114903325821356486}
   m_Layer: 0
   m_Name: Bullet_LOD0
   m_TagString: Untagged
@@ -85,6 +87,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1834402137551620}
   m_Mesh: {fileID: 4300000, guid: 070981638287eb24d884c0636120042c, type: 3}
+--- !u!54 &54697090824314514
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1834402137551620}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65578677575402244
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1834402137551620}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.026182001, y: 0.039036535, z: 0.026181998}
+  m_Center: {x: -0.00000044377518, y: -0.00014123603, z: 0.0000000051222755}
 --- !u!95 &95757998027168516
 Animator:
   serializedVersion: 3
@@ -103,7 +132,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114312687664007696
+--- !u!114 &114903325821356486
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,3 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf1637a8bae47845a997f2114773c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletSpeed: 2
+  maxDistance: 1
+  bulletHole: {fileID: 1750554931479982, guid: 51a101fb46bd92a4883ee34d6719fc98, type: 2}
+  damageAmount: 1

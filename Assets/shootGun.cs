@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class shootGun : MonoBehaviour {
     public int damageAmount = 1;
     public float targetDistance;
-    public float maxDistance = 15;
+    public float maxDistance = 20;
     public LineRenderer lr;
     public RectTransform ammoClipText;
     public GameObject bulletHole;
@@ -26,9 +26,9 @@ public class shootGun : MonoBehaviour {
             if (Input.GetButtonDown("Fire1"))
             {
 
-                GameObject Bullet = Instantiate(bullet, transform.position, new Quaternion());
-                Bullet.transform.rotation = transform.rotation;
-                Bullet.transform.Rotate(90, 0, 0);
+                //GameObject Bullet = Instantiate(bullet, transform.position, new Quaternion());
+                //Bullet.transform.rotation = transform.rotation;
+                //Bullet.transform.Rotate(90, 0, 0);
 
                 RaycastHit shot;
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out shot))
@@ -37,14 +37,15 @@ public class shootGun : MonoBehaviour {
                     //Vector3 endPoint = shot.point;
                     //lr.SetPosition(0, transform.position);
                     //lr.SetPosition(1, endPoint);
-                    GameObject hole = Instantiate(bulletHole, shot.point, Quaternion.FromToRotation(Vector3.up, shot.normal));
-                    hole.transform.SetParent(shot.transform);
+                    
 
-                    if (targetDistance < maxDistance)
+                    if (targetDistance <= maxDistance)
                     {
+                        GameObject hole = Instantiate(bulletHole, shot.point, Quaternion.FromToRotation(Vector3.up, shot.normal));
+                        hole.transform.SetParent(shot.transform);
                         shot.transform.SendMessage("DoDamage", damageAmount, SendMessageOptions.DontRequireReceiver);
                     }
-                    
+
                 }
             }
         }
