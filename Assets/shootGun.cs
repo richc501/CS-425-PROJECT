@@ -10,6 +10,7 @@ public class shootGun : MonoBehaviour {
     public LineRenderer lr;
     public RectTransform ammoClipText;
     public GameObject bulletHole;
+    public GameObject bullet;
     // Use this for initialization
     void Start () {
         lr = GetComponent<LineRenderer>();
@@ -24,6 +25,8 @@ public class shootGun : MonoBehaviour {
         {
             if (Input.GetButtonDown("Fire1"))
             {
+                Instantiate(bullet, transform.position, new Quaternion());
+
                 RaycastHit shot;
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out shot))
                 {
