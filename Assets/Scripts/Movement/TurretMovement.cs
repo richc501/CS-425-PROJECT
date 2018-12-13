@@ -43,8 +43,13 @@ public class TurretMovement : MonoBehaviour {
 
         RaycastHit hit;
         if (Physics.Linecast(transform.position, target.transform.position, out hit)) {
+            
             if (hit.transform.tag != "Player")
+            {
                 spotted = false;
+                Debug.Log(spotted);
+                
+            }
         }
         rotateGun(step);
         tiltGun(step);

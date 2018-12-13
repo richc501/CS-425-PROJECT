@@ -4,11 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Triggerer
-  - Grass
-  - Stone
-  - Blue
-  - Red
+  - Shootable
   layers:
   - Default
   - TransparentFX
@@ -18,8 +14,9 @@ TagManager:
   - UI
   - 
   - 
-  - Minimap
-  - GUN
+  - Lighting
+  - Ground
+  - Postprocessing
   - 
   - 
   - 
@@ -31,18 +28,20 @@ TagManager:
   - 
   - 
   - 
-  - MovableObject
-  - Ragdoll
-  - RemotePlayer
-  - IgnoreBullets
-  - Enemy
-  - Pickup
-  - Trigger
-  - MovingPlatform
-  - Debris
-  - LocalPlayer
-  - Weapon
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   m_SortingLayers:
+  - name: Fire
+    uniqueID: 3804908061
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
