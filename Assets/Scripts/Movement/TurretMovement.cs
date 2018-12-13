@@ -57,11 +57,7 @@ public class TurretMovement : MonoBehaviour {
     }
 
     void shoot(){
-<<<<<<< HEAD
-        Debug.Log("shoot");
-=======
-        Debug.Log("SHOOT");
->>>>>>> 6a0d941bf830edc2ab585e8aa731b5b6d877d134
+
     }
 
     void rotateGun(float step){
