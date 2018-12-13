@@ -6,9 +6,9 @@ public class spawnLevel : MonoBehaviour {
 
     // Use this for initialization
     public GameObject level;
-    public float yIncrease = 100f;
+    public float yIncrease = 1f;
 	void Start () {
-        Vector3 pos = transform.position + new Vector3(0, yIncrease, 0);
+        Vector3 pos = transform.position ;
         //Debug.Log(pos);
 		GameObject lvl = Instantiate(level, pos, new Quaternion()) as GameObject;
     }

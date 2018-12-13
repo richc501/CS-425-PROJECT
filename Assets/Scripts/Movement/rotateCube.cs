@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class rotateCube : MonoBehaviour {
 
@@ -9,9 +11,20 @@ public class rotateCube : MonoBehaviour {
 	void Start () {
 		r = Random.Range(0, 2);
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    void OnTriggerEnter(Collider col)
+    {
+        PlayerPrefs.SetInt("difficulty", 1);
+        if (col.gameObject.name == "Player")
+        {
+            SceneManager.LoadScene("main");
+        }
+        else
+            Debug.Log(col.gameObject.name);
+    }
+
+    // Update is called once per frame
+    void Update () {
         
         switch(r)
         {

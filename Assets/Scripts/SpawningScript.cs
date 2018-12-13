@@ -13,6 +13,7 @@ public class SpawningScript : MonoBehaviour
     public bool west;
     //for determining what difficulty of levels to spawn
     public int difficulty;
+    
     //set in the editor, contains the paths for all different levels
     public string[] folders;
     //used for picking a random tile
@@ -46,7 +47,12 @@ public class SpawningScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        difficulty = PlayerPrefs.GetInt("difficulty",0);
         //make 2D array of size[numOfLevels][determined at runtime]
+        if (difficulty > 1) {
+            PlayerPrefs.SetInt("difficulty", 0);
+            difficulty = 0;
+        }
         tiles = new GameObject[folders.Length][];
 
         //load the tiles into the correct arrays
@@ -59,6 +65,7 @@ public class SpawningScript : MonoBehaviour
         int numSpawned = 0;
         while (numSpawned <= max + 1)
         {
+
             for (int i = 0; i < positions.Count; i++)
                 if (i == 0 && Random.Range(1, 100) < 10)
                     positions.Add(new Path(spawnNext(positions[i], numSpawned), 0, 4, new int[2] { 0, 2 }));
@@ -92,18 +99,14 @@ public class SpawningScript : MonoBehaviour
             switch (spawn)
             {
                 case 0://north
-                    Debug.Log("0");
                     if (empty(pos + new Vector3(300, 0, 0))){
                         pos += new Vector3(300, 0, 0);
                         spawned = true;
-                        
-                        Debug.Log("Empty");
                     }
                     else
                         spawn = Random.Range(1, 4);
                     break;
                 case 1://south
-                    Debug.Log("1");
                     if (empty(pos + new Vector3(-300, 0, 0))){
                         pos += new Vector3(-300, 0, 0);
                         spawned = true;
@@ -115,7 +118,6 @@ public class SpawningScript : MonoBehaviour
                     break;
 
                 case 2://east
-                    Debug.Log("2");
                     if (empty(pos + new Vector3(0, 0, 300))){
                         pos += new Vector3(0, 0, 300);
                         spawned = true;
@@ -128,7 +130,6 @@ public class SpawningScript : MonoBehaviour
                     break;
 
                 case 3://west
-                    Debug.Log("3");
                     if (empty(pos + new Vector3(0, 0, -300))){
                         pos += new Vector3(0, 0, -300);
                         spawned = true;

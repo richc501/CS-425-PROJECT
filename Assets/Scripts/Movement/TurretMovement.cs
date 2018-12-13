@@ -22,6 +22,7 @@ public class TurretMovement : MonoBehaviour {
         right = turret.transform.rotation * Quaternion.AngleAxis(-90, Vector3.up);
         nextRot = left;
         target = GameObject.FindWithTag("Player");
+        Debug.Log(target.name);
     }
 
     // Update is called once per frame
@@ -50,7 +51,7 @@ public class TurretMovement : MonoBehaviour {
     }
 
     void shoot(){
-
+        Debug.Log("shoot");
     }
 
     void rotateGun(float step){
