@@ -316,7 +316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3800154c127ded24191778c937e5bd89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healObject: {fileID: 0}
+  healObject: {fileID: 1097658907780532, guid: 527c9ed7c95b7704b90852c6969bb68f, type: 2}
+  healBox: {fileID: 1435285210628884}
   minHealthGain: 10
   maxHealthGain: 26
   radius: 5

@@ -13,23 +13,38 @@ public class TurretMovement : MonoBehaviour {
     private GameObject target;
     public GameObject turret;
     public GameObject gun;
-
+    public GameObject shootPoint;
+    public float maxAngle = 40;
+    public float shootingRange = 30;
+    public float maxDistance = 40;
+    public int damageAmount = 2;
+    public GameObject healthObj;
+    private AudioSource machineGunNoise;
+    private AudioSource hitSound;
+    private float timer = -1;
+    public float maxTimer = 0.15f;
     // Use this for initialization
     void Start(){
+        //timer = maxTimer;
         spotted = false;
         nextTilt = Quaternion.AngleAxis(Random.Range(-30,30), Vector3.up);
         left = turret.transform.rotation * Quaternion.AngleAxis(90, Vector3.up);
         right = turret.transform.rotation * Quaternion.AngleAxis(-90, Vector3.up);
         nextRot = left;
         target = GameObject.FindWithTag("Player");
+        Debug.Log(target.name);
+        machineGunNoise = shootPoint.GetComponent<AudioSource>();
+        hitSound = target.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update() {
+        timer -= Time.deltaTime;
         float step = speed * Time.deltaTime;
         Vector3 targetDir = target.transform.position - turret.transform.position;
         float angle = Vector3.Angle(targetDir, turret.transform.forward);
-        if (angle < 40) {
+        float distance = targetDir.magnitude;
+        if (angle < maxAngle) {
             spotted = true;
         } else {
             spotted = false;
@@ -38,8 +53,8 @@ public class TurretMovement : MonoBehaviour {
         if (turret.transform.rotation.y <= 0 || gun.transform.rotation.z <= -2 || gun.transform.rotation.z >= 2)
             spotted = false;
 
-        Debug.DrawRay(transform.position, target.transform.position, Color.blue);
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 100, Color.red);
+        Debug.DrawLine(transform.position, target.transform.position, Color.blue);
+        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 100, Color.red);
 
         RaycastHit hit;
         if (Physics.Linecast(transform.position, target.transform.position, out hit)) {
@@ -53,15 +68,35 @@ public class TurretMovement : MonoBehaviour {
         }
         rotateGun(step);
         tiltGun(step);
-        if(spotted)
+        
+        if(spotted && !machineGunNoise.isPlaying)// && distance <= shootingRange && distance > 0)
             shoot();
 
+        
         Debug.Log(spotted);
-        Debug.DrawRay(transform.position, target.transform.position, Color.blue);
+        Debug.DrawRay(shootPoint.transform.position, shootPoint.transform.TransformDirection(Vector3.forward)* 100, Color.cyan);
     }
 
     void shoot(){
-        Debug.Log("SHOOT");
+        timer = maxTimer;
+
+        if(!machineGunNoise.isPlaying)
+        {
+            machineGunNoise.Play();
+        }
+        RaycastHit shot;
+        if(Physics.Raycast(shootPoint.transform.position, shootPoint.transform.TransformDirection(Vector3.forward), out shot))
+        {
+            float targetDistance = shot.distance;
+            if (targetDistance < maxDistance)
+            {
+                if (!hitSound.isPlaying)
+                {
+                    hitSound.Play();
+                }
+                healthObj.GetComponent<healthObject>().DoDamageOnPlayer(damageAmount);
+            }
+        }
     }
 
     void rotateGun(float step){

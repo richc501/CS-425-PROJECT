@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 114089445951304242}
   - component: {fileID: 114746865581327564}
   m_Layer: 5
-  m_Name: MyMiniMap
+  m_Name: MyMiniMap_old
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

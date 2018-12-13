@@ -388,9 +388,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mineDamage: 10
   maxtime: 10
-  radius: 20
-  Explosion: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b, type: 2}
-  healObject: {fileID: 0}
+  timer: 3
+  checkRadius: 2
+  blastRadius: 5
+  Explosion: {fileID: 1121192042590650, guid: e1b08032bec16ba4eb1ae23cbd572664, type: 2}
+  healObject: {fileID: 1097658907780532, guid: 527c9ed7c95b7704b90852c6969bb68f, type: 2}
   mineObj: {fileID: 1637534344599294}
   mineSounds:
   - {fileID: 8300000, guid: 287a6f7c5ea4f354795e41e87b63ff5e, type: 3}

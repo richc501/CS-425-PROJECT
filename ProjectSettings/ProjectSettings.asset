@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 15
-  productGUID: 00000000000000000000000000000000
+  productGUID: 53e0997cb2ee4f141906c1badaf98f66
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -718,7 +718,7 @@ PlayerSettings:
   cloudServicesEnabled:
     Analytics: 0
     Build: 0
-    Collab: 0
+    Collab: 1
     ErrorHub: 0
     Game_Performance: 0
     Hub: 0
@@ -728,7 +728,7 @@ PlayerSettings:
   facebookSdkVersion: 7.9.1
   apiCompatibilityLevel: 2
   cloudProjectId: d841caa3-d9e3-4b06-8c84-048bc0d47bfe
-  projectName: EffectsExamples
+  projectName: Final Project
   organizationId: destroierrr9
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
