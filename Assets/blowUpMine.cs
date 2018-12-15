@@ -7,19 +7,21 @@ public class blowUpMine : MonoBehaviour {
     private bool hasExploded = false;
     private bool playerNearBy = false;
     private bool playerDamaged = false;
-    public float maxtime = 3f;
-    public float timer = 3f;
-    public float checkRadius = 3f;
-    public float blastRadius = 6f;
+    public float maxtime = 4f;
+    private float timer;
+    public float checkRadius = 4f;
+    public float blastRadius = 10f;
     public GameObject Explosion;
     private GameObject healObject;
     public GameObject mineObj;
     private AudioSource mineSoundEmmiter;
     public AudioClip[] mineSounds;
+
 	// Use this for initialization
 	void Start () {
         healObject = GameObject.FindWithTag("HealthObject");
         mineSoundEmmiter = GetComponent<AudioSource>();
+        timer = maxtime;
 	}
 	
 	// Update is called once per frame
@@ -55,7 +57,7 @@ public class blowUpMine : MonoBehaviour {
             
             Explode();
             Destroy(mineObj);
-            Destroy(gameObject, 60f);
+            Destroy(gameObject, 10f);
         }
 	}
     
