@@ -14,6 +14,7 @@ public class TurretMovement : MonoBehaviour {
     public GameObject turret;
     public GameObject gun;
     public GameObject shootPoint;
+    public GameObject muzzleFlash;
     public float maxAngle = 40;
     public float shootingRange = 30;
     public float maxDistance = 40;
@@ -87,6 +88,7 @@ public class TurretMovement : MonoBehaviour {
         {
             machineGunNoise.Play();
         }
+        GameObject flash = Instantiate(muzzleFlash, gun.transform);
         RaycastHit shot;
         if(Physics.Raycast(shootPoint.transform.position, shootPoint.transform.TransformDirection(Vector3.forward), out shot))
         {
