@@ -93,12 +93,12 @@ public class TurretMovement : MonoBehaviour {
         
         Debug.Log(spotted);
         //Debug.DrawRay(shootPoint.transform.position, shootPoint.transform.TransformDirection(Vector3.forward)* 100, Color.cyan);
-        Debug.DrawRay(shootPointsArray[0].position, shootPointsArray[0].TransformDirection(Vector3.forward)* 100, Color.cyan);
-        Debug.DrawRay(shootPointsArray[1].position, shootPointsArray[1].TransformDirection(Vector3.forward)* 100, Color.cyan);
-        Debug.DrawRay(shootPointsArray[2].position, shootPointsArray[2].TransformDirection(Vector3.forward)* 100, Color.cyan);
-        Debug.DrawRay(shootPointsArray[3].position, shootPointsArray[3].TransformDirection(Vector3.forward)* 100, Color.cyan);
-        Debug.DrawRay(shootPointsArray[4].position, shootPointsArray[4].TransformDirection(Vector3.forward)* 100, Color.cyan);
-        Debug.DrawRay(shootPointsArray[5].position, shootPointsArray[5].TransformDirection(Vector3.forward)* 100, Color.cyan);
+        //Debug.DrawRay(shootPointsArray[0].position, shootPointsArray[0].TransformDirection(Vector3.forward)* 100, Color.red);
+        //Debug.DrawRay(shootPointsArray[1].position, shootPointsArray[1].TransformDirection(Vector3.forward)* 100, Color.green);
+        //Debug.DrawRay(shootPointsArray[2].position, shootPointsArray[2].TransformDirection(Vector3.forward)* 100, Color.gray);
+        //Debug.DrawRay(shootPointsArray[3].position, shootPointsArray[3].TransformDirection(Vector3.forward)* 100, Color.blue);
+        //Debug.DrawRay(shootPointsArray[4].position, shootPointsArray[4].TransformDirection(Vector3.forward)* 100, Color.black);
+        //Debug.DrawRay(shootPointsArray[5].position, shootPointsArray[5].TransformDirection(Vector3.forward)* 100, Color.cyan);
         
 
     }
