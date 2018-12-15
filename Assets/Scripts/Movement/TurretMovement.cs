@@ -48,7 +48,7 @@ public class TurretMovement : MonoBehaviour {
         Vector3 targetDir = target.transform.position - turret.transform.position;
         float angle = Vector3.Angle(targetDir, turret.transform.forward);
         float distance = targetDir.magnitude;
-        if (angle < maxAngle) {
+        if (angle < maxAngle && distance <= maxDistance * 1.25f) {
             spotted = true;
         } else {
             spotted = false;
