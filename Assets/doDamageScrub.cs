@@ -26,30 +26,40 @@ public class doDamageScrub : MonoBehaviour {
         }
         else
         {
-            if (headAudio == null)
-                headAudio = head.GetComponent<AudioSource>();
-
-            if (health <= 0 && !isKilled)
+            if (head.tag.ToString().Equals("Mine"))
             {
-                isKilled = true;
-
-                headAudio.PlayOneShot(boomSound);
-                GameObject boom = Instantiate(Explosion, head.transform.position + new Vector3(0, 1, 0), head.transform.rotation);
-
-                Destroy(boom, 2f);
-                foreach (Renderer r in head.GetComponentsInChildren<Renderer>())
+                if (health <= 0)
                 {
-                    if (r != null)
+                    head.GetComponent<blowUpMine>().explodeFromOutside();
+                }
+            }
+            else
+            {
+                if (headAudio == null)
+                    headAudio = head.GetComponent<AudioSource>();
+
+                if (health <= 0 && !isKilled)
+                {
+                    isKilled = true;
+
+                    headAudio.PlayOneShot(boomSound);
+                    GameObject boom = Instantiate(Explosion, head.transform.position + new Vector3(0, 1, 0), head.transform.rotation);
+
+                    Destroy(boom, 2f);
+                    foreach (Renderer r in head.GetComponentsInChildren<Renderer>())
                     {
-                        r.enabled = false;
+                        if (r != null)
+                        {
+                            r.enabled = false;
+                        }
                     }
+
                 }
 
-            }
-    
-            if(isKilled&&!headAudio.isPlaying)
-            {
-                Destroy(head);
+                if (isKilled && !headAudio.isPlaying)
+                {
+                    Destroy(head);
+                }
             }
         }
 	}
