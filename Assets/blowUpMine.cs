@@ -28,6 +28,8 @@ public class blowUpMine : MonoBehaviour {
         if(playerNearBy)
         {
             timer -= Time.deltaTime;
+            if(!hasExploded)
+                mineObj.GetComponent<MakeMineBeep>().Beep(mineSounds[0]);
         }
         if (!hasExploded)
         {
@@ -36,7 +38,7 @@ public class blowUpMine : MonoBehaviour {
                 if (nearByObj.tag.ToString().Equals("Player"))
                 {
                     playerNearBy = true;
-                    mineObj.GetComponent<MakeMineBeep>().Beep(mineSounds[0]);
+                    
                     break;
                 }
                 //else
