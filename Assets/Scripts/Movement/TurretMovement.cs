@@ -87,7 +87,7 @@ public class TurretMovement : MonoBehaviour {
         rotateGun(step);
         tiltGun(step);
         
-        if(spotted && !machineGunNoise[0].isPlaying && !machineGunNoise[1] && !machineGunNoise[2] && !machineGunNoise[3] && !machineGunNoise[4] && !machineGunNoise[5])// && distance <= shootingRange && distance > 0)
+        if(spotted && !machineGunNoise[0].isPlaying && !machineGunNoise[1].isPlaying && !machineGunNoise[2].isPlaying && !machineGunNoise[3].isPlaying && !machineGunNoise[4].isPlaying && !machineGunNoise[5].isPlaying)// && distance <= shootingRange && distance > 0)
             shoot();
 
         
