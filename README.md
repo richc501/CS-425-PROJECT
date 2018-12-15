@@ -14,6 +14,8 @@ Hardcore Parkour is a procedurally generated parkour simulator.
 
 >- Levels are procedurally placed in order to give each run a variety of levels.
 
+>- With your gun, blast your way through turrets, mines, and your own fear of incompetance.
+
 # Libraries Used
 
 > TBD
