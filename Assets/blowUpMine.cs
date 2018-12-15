@@ -7,9 +7,9 @@ public class blowUpMine : MonoBehaviour {
     private bool hasExploded = false;
     private bool playerNearBy = false;
     private bool playerDamaged = false;
-    public float maxtime = 4f;
+    public float maxtime = 3f;
     private float timer;
-    public float checkRadius = 4f;
+    public float checkRadius = 2f;
     public float blastRadius = 10f;
     public GameObject Explosion;
     private GameObject healObject;
@@ -61,7 +61,7 @@ public class blowUpMine : MonoBehaviour {
         }
 	}
     
-    void Explode()
+    public void Explode()
     {
         hasExploded = true;
         GameObject boom = Instantiate(Explosion, transform.position + new Vector3(0, 1, 0), transform.rotation);
@@ -80,9 +80,27 @@ public class blowUpMine : MonoBehaviour {
             }
         }
         Destroy(boom, 2f);
-
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag("Mine");
+        foreach (GameObject o in gameObjects)
+        {
+            Vector3 dir = transform.position - o.transform.position;
+            float distance = dir.magnitude;
+            if (distance < blastRadius)
+            {
+                o.GetComponent<blowUpMine>().explodeFromOutside();
+            }
+        }
     }
 
+    public void explodeFromOutside()
+    {
+        if(!hasExploded)
+        {
+            Explode();
+            Destroy(mineObj);
+            Destroy(gameObject, 10f);
+        }
+    }
     //private void OnCollisionEnter(Collision collision)
     //{
     //        hasExploded = true;

@@ -7,6 +7,9 @@ TagManager:
   - Shootable
   - HealthObject
   - Pistol
+  - SecondCamera
+  - BulletSpawn
+  - Mine
   layers:
   - Default
   - TransparentFX
