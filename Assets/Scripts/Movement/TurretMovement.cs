@@ -13,14 +13,16 @@ public class TurretMovement : MonoBehaviour {
     private GameObject target;
     public GameObject turret;
     public GameObject gun;
-    public GameObject shootPoint;
-    public GameObject muzzleFlash;
+    public GameObject shootPoints;
+    private Transform[] shootPointsArray;
+    public GameObject muzzleFlashPoint;
+    public Light[] muzzleLights;
     public float maxAngle = 40;
     public float shootingRange = 30;
     public float maxDistance = 40;
     public int damageAmount = 2;
-    public GameObject healthObj;
-    private AudioSource machineGunNoise;
+    private GameObject healthObj;
+    private AudioSource[] machineGunNoise;
     private AudioSource hitSound;
     private AudioSource explodeSound;
     // Use this for initialization
@@ -32,10 +34,17 @@ public class TurretMovement : MonoBehaviour {
         right = turret.transform.rotation * Quaternion.AngleAxis(-90, Vector3.up);
         nextRot = left;
         target = GameObject.FindWithTag("Player");
+        healthObj = GameObject.FindWithTag("HealthObject");
         Debug.Log(target.name);
-        machineGunNoise = shootPoint.GetComponent<AudioSource>();
+        machineGunNoise = shootPoints.GetComponentsInChildren<AudioSource>();
         hitSound = target.GetComponent<AudioSource>();
         explodeSound = GetComponent<AudioSource>();
+        shootPointsArray = shootPoints.GetComponentsInChildren<Transform>();
+        muzzleLights = muzzleFlashPoint.GetComponentsInChildren<Light>();
+        foreach(Light l in muzzleLights)
+        {
+            l.enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -59,6 +68,8 @@ public class TurretMovement : MonoBehaviour {
             spotted = false;
 
         Debug.DrawLine(transform.position, target.transform.position, Color.blue);
+        
+        
         //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 100, Color.red);
 
         RaycastHit hit;
@@ -74,33 +85,71 @@ public class TurretMovement : MonoBehaviour {
         rotateGun(step);
         tiltGun(step);
         
-        if(spotted && !machineGunNoise.isPlaying)// && distance <= shootingRange && distance > 0)
+        if(spotted && !machineGunNoise[0].isPlaying)// && distance <= shootingRange && distance > 0)
             shoot();
 
         
         Debug.Log(spotted);
-        Debug.DrawRay(shootPoint.transform.position, shootPoint.transform.TransformDirection(Vector3.forward)* 100, Color.cyan);
+        //Debug.DrawRay(shootPoint.transform.position, shootPoint.transform.TransformDirection(Vector3.forward)* 100, Color.cyan);
+        Debug.DrawRay(shootPointsArray[0].position, shootPointsArray[0].TransformDirection(Vector3.forward)* 100, Color.cyan);
+        Debug.DrawRay(shootPointsArray[1].position, shootPointsArray[1].TransformDirection(Vector3.forward)* 100, Color.cyan);
+        Debug.DrawRay(shootPointsArray[2].position, shootPointsArray[2].TransformDirection(Vector3.forward)* 100, Color.cyan);
+        Debug.DrawRay(shootPointsArray[3].position, shootPointsArray[3].TransformDirection(Vector3.forward)* 100, Color.cyan);
+        Debug.DrawRay(shootPointsArray[4].position, shootPointsArray[4].TransformDirection(Vector3.forward)* 100, Color.cyan);
+        Debug.DrawRay(shootPointsArray[5].position, shootPointsArray[5].TransformDirection(Vector3.forward)* 100, Color.cyan);
+        
+
     }
 
-    void shoot(){
-
-        if(!machineGunNoise.isPlaying)
+    void shoot()
+    {
+        foreach (AudioSource sound in machineGunNoise)
         {
-            machineGunNoise.Play();
-        }
-        GameObject flash = Instantiate(muzzleFlash, gun.transform);
-        RaycastHit shot;
-        if(Physics.Raycast(shootPoint.transform.position, shootPoint.transform.TransformDirection(Vector3.forward), out shot))
-        {
-            float targetDistance = shot.distance;
-            if (targetDistance < maxDistance)
+            if (!sound.isPlaying)
             {
-                if (!hitSound.isPlaying)
-                {
-                    hitSound.Play();
-                }
-                healthObj.GetComponent<healthObject>().DoDamageOnPlayer(damageAmount);
+                sound.Play();
             }
+        }
+        //GameObject flash = Instantiate(muzzleFlash, gun.transform);
+        //RaycastHit shot;
+        //if(Physics.Raycast(shootPoint.transform.position, shootPoint.transform.TransformDirection(Vector3.forward), out shot))
+        //{
+        //    float targetDistance = shot.distance;
+        //    if (targetDistance < maxDistance)
+        //    {
+        //        if (!hitSound.isPlaying)
+        //        {
+        //            hitSound.Play();
+        //        }
+        //        healthObj.GetComponent<healthObject>().DoDamageOnPlayer(damageAmount);
+        //    }
+        //}
+
+        foreach (Transform t in shootPointsArray)
+        {
+            //GameObject flash = Instantiate(muzzleFlash, t);
+            RaycastHit shoot;
+            if (Physics.Raycast(t.position, t.transform.TransformDirection(Vector3.forward), out shoot))
+            {
+                float targetDistance = shoot.distance;
+                if (targetDistance < maxDistance)
+                {
+                    if (!hitSound.isPlaying)
+                    {
+                        hitSound.Play();
+                    }
+                    healthObj.GetComponent<healthObject>().DoDamageOnPlayer(damageAmount);
+                }
+            }
+        }
+        foreach (Light t in muzzleLights)
+        {
+            if (t.enabled)
+            {
+                t.enabled = false;
+            }
+            else
+                t.enabled = true;
         }
     }
 
