@@ -21,6 +21,7 @@ public class TurretMovement : MonoBehaviour {
     public GameObject healthObj;
     private AudioSource machineGunNoise;
     private AudioSource hitSound;
+    private AudioSource explodeSound;
     // Use this for initialization
     void Start(){
         //timer = maxTimer;
@@ -33,10 +34,16 @@ public class TurretMovement : MonoBehaviour {
         Debug.Log(target.name);
         machineGunNoise = shootPoint.GetComponent<AudioSource>();
         hitSound = target.GetComponent<AudioSource>();
+        explodeSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update() {
+        if(explodeSound.isPlaying)
+        {
+            return;
+        }
+
         float step = speed * Time.deltaTime;
         Vector3 targetDir = target.transform.position - turret.transform.position;
         float angle = Vector3.Angle(targetDir, turret.transform.forward);

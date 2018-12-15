@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class HealPlayer : MonoBehaviour {
-    public GameObject healObject;
+    private GameObject healObject;
     public GameObject healBox;
     public float minHealthGain = 10;
     public float maxHealthGain = 26;
@@ -13,6 +13,7 @@ public class HealPlayer : MonoBehaviour {
     public AudioClip sound;
 	// Use this for initialization
 	void Start () {
+        healObject = GameObject.FindGameObjectWithTag("HealthObject");
         playPickUp = GetComponent<AudioSource>();
 
 	}

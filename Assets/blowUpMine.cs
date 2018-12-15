@@ -9,15 +9,16 @@ public class blowUpMine : MonoBehaviour {
     private bool playerDamaged = false;
     public float maxtime = 3f;
     public float timer = 3f;
-    public float checkRadius = 2f;
-    public float blastRadius = 5f;
+    public float checkRadius = 3f;
+    public float blastRadius = 6f;
     public GameObject Explosion;
-    public GameObject healObject;
+    private GameObject healObject;
     public GameObject mineObj;
     private AudioSource mineSoundEmmiter;
     public AudioClip[] mineSounds;
 	// Use this for initialization
 	void Start () {
+        healObject = GameObject.FindWithTag("HealthObject");
         mineSoundEmmiter = GetComponent<AudioSource>();
 	}
 	
@@ -59,7 +60,7 @@ public class blowUpMine : MonoBehaviour {
     void Explode()
     {
         hasExploded = true;
-        GameObject boom = Instantiate(Explosion, transform.position, transform.rotation);
+        GameObject boom = Instantiate(Explosion, transform.position + new Vector3(0, 1, 0), transform.rotation);
         mineSoundEmmiter.PlayOneShot(mineSounds[1]);
         Collider[] colliders = Physics.OverlapSphere(transform.position, blastRadius);
         foreach (Collider nearByObj in colliders)

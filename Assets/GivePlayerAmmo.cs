@@ -7,12 +7,13 @@ public class GivePlayerAmmo : MonoBehaviour {
     private bool playerAmmoReceived = false;
     private AudioSource playPickUp;
     public AudioClip sound;
-    public GameObject gunObject;
+    private GameObject gunObject;
     public GameObject ammo;
     public float minAmmoGain = 20;
     public float maxAmmoGain = 60;
     // Use this for initialization
     void Start () {
+        gunObject = GameObject.FindWithTag("Pistol");
         playPickUp = GetComponent<AudioSource>();
 	}
 	
