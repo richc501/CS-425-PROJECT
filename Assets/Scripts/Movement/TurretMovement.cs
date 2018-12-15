@@ -20,7 +20,7 @@ public class TurretMovement : MonoBehaviour {
     public float maxAngle = 40;
     public float shootingRange = 30;
     public float maxDistance = 40;
-    public int damageAmount = 2;
+    public int damageAmount = 1;
     private GameObject healthObj;
     private AudioSource[] machineGunNoise;
     private AudioSource hitSound;
@@ -58,7 +58,9 @@ public class TurretMovement : MonoBehaviour {
         Vector3 targetDir = target.transform.position - turret.transform.position;
         float angle = Vector3.Angle(targetDir, turret.transform.forward);
         float distance = targetDir.magnitude;
-        if (angle < maxAngle && distance <= maxDistance * 1.25f) {
+        Debug.Log("Angle: " + angle + " Distance: " + distance + " Target Dir: " + targetDir);
+        
+        if (angle < maxAngle && distance <= maxDistance * 1.5f) {
             spotted = true;
         } else {
             spotted = false;
@@ -85,7 +87,7 @@ public class TurretMovement : MonoBehaviour {
         rotateGun(step);
         tiltGun(step);
         
-        if(spotted && !machineGunNoise[0].isPlaying)// && distance <= shootingRange && distance > 0)
+        if(spotted && !machineGunNoise[0].isPlaying && !machineGunNoise[1] && !machineGunNoise[2] && !machineGunNoise[3] && !machineGunNoise[4] && !machineGunNoise[5])// && distance <= shootingRange && distance > 0)
             shoot();
 
         
