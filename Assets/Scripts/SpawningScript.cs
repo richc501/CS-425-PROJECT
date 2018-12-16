@@ -49,7 +49,7 @@ public class SpawningScript : MonoBehaviour
     {
         difficulty = PlayerPrefs.GetInt("difficulty",0);
         //make 2D array of size[numOfLevels][determined at runtime]
-        if (difficulty > 1) {
+        if (difficulty > 1||difficulty<0) {
             PlayerPrefs.SetInt("difficulty", 0);
             difficulty = 0;
         }
@@ -65,7 +65,7 @@ public class SpawningScript : MonoBehaviour
         int numSpawned = 0;
         while (numSpawned <= max + 1)
         {
-
+            
             for (int i = 0; i < positions.Count; i++)
                 if (i == 0 && Random.Range(1, 100) < 10)
                     positions.Add(new Path(spawnNext(positions[i], numSpawned), 0, 4, new int[2] { 0, 2 }));
@@ -78,6 +78,8 @@ public class SpawningScript : MonoBehaviour
 
     Vector3 spawnNext(Path p, int numSpawned)
     {
+        Debug.Log(tiles[difficulty].Length);
+
         Vector3 pos = p.pos;
         if (numSpawned == max + 1)
             next = goal;
