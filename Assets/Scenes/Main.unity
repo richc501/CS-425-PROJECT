@@ -3779,6 +3779,12 @@ Prefab:
       propertyPath: folders.Array.data[1]
       value: Tiles\Level2
       objectReference: {fileID: 0}
+    - target: {fileID: 114949977757538456, guid: 14ac60ad1c277444d88b6751f143257a,
+        type: 2}
+      propertyPath: goal
+      value: 
+      objectReference: {fileID: 1150597746332700, guid: 057b8cc9974bfb04a998d498cc9507eb,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14ac60ad1c277444d88b6751f143257a, type: 2}
   m_IsPrefabAsset: 0
