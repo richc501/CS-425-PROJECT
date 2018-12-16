@@ -35,7 +35,7 @@ public class TurretMovement : MonoBehaviour {
         nextRot = left;
         target = GameObject.FindWithTag("Player");
         healthObj = GameObject.FindWithTag("HealthObject");
-        Debug.Log(target.name);
+        //Debug.Log(target.name);
         machineGunNoise = shootPoints.GetComponentsInChildren<AudioSource>();
         hitSound = target.GetComponent<AudioSource>();
         explodeSound = GetComponent<AudioSource>();
@@ -58,7 +58,7 @@ public class TurretMovement : MonoBehaviour {
         Vector3 targetDir = target.transform.position - turret.transform.position;
         float angle = Vector3.Angle(targetDir, turret.transform.forward);
         float distance = targetDir.magnitude;
-        Debug.Log("Angle: " + angle + " Distance: " + distance + " Target Dir: " + targetDir);
+        //Debug.Log("Angle: " + angle + " Distance: " + distance + " Target Dir: " + targetDir);
         
         if (angle < maxAngle && distance <= maxDistance * 1.5f) {
             spotted = true;
@@ -80,7 +80,7 @@ public class TurretMovement : MonoBehaviour {
             if (hit.transform.tag != "Player")
             {
                 spotted = false;
-                Debug.Log(spotted);
+                //Debug.Log(spotted);
                 
             }
         }
