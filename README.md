@@ -27,5 +27,6 @@ Hardcore Parkour is a procedurally generated parkour simulator.
 >- Unity Particle Pack https://assetstore.unity.com/packages/essentials/tutorial-projects/unity-particle-pack-127325
 >- AT-Mine https://assetstore.unity.com/packages/3d/props/weapons/at-mine-37653
 >- Enemy Turrets https://assetstore.unity.com/packages/3d/characters/robots/enemy-turrets-27858
+>- Military First Aid, Health Kit model https://www.turbosquid.com/FullPreview/Index.cfm/ID/1284968
 
 # [Video Demo](https://youtu.be/DfKO-29EAg4)
