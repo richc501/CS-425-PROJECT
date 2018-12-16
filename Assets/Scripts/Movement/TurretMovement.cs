@@ -69,7 +69,7 @@ public class TurretMovement : MonoBehaviour {
         if (turret.transform.rotation.y <= 0 || gun.transform.rotation.z <= -2 || gun.transform.rotation.z >= 2)
             spotted = false;
 
-        Debug.DrawLine(transform.position, target.transform.position, Color.blue);
+        //Debug.DrawLine(transform.position, target.transform.position, Color.blue);
         
         
         //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 100, Color.red);
