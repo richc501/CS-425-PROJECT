@@ -889,7 +889,8 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 61635860037140946, guid: 0f99f9cb67c1040418c2865705a37087, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 0f99f9cb67c1040418c2865705a37087, type: 2}
   m_IsPrefabAsset: 0
 --- !u!224 &300684408 stripped
@@ -1274,6 +1275,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 479556871}
   m_Mesh: {fileID: 4300016, guid: 6430f79e6f5e5d943985886a1fb8d3c0, type: 3}
+--- !u!1 &558817288 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1964709147335780, guid: 0f99f9cb67c1040418c2865705a37087,
+    type: 2}
+  m_PrefabInternal: {fileID: 300684407}
+--- !u!114 &558817289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 558817288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1200242548, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowMaskGraphic: 1
 --- !u!1 &614172001
 GameObject:
   m_ObjectHideFlags: 0
@@ -2131,6 +2149,11 @@ Transform:
   m_Father: {fileID: 50405356}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1108103327 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 20963591641030908, guid: 9367f1280c469624889d2ec5cb1e55ff,
+    type: 2}
+  m_PrefabInternal: {fileID: 2128284359}
 --- !u!1 &1110047032
 GameObject:
   m_ObjectHideFlags: 0
@@ -3203,6 +3226,24 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1499831640}
   m_Mesh: {fileID: 4300000, guid: 6430f79e6f5e5d943985886a1fb8d3c0, type: 3}
+--- !u!1 &1524230887 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1585575466857592, guid: 0f99f9cb67c1040418c2865705a37087,
+    type: 2}
+  m_PrefabInternal: {fileID: 300684407}
+--- !u!114 &1524230891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1524230887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eda6694f11116647b6bb8aa697d70e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPos: {fileID: 1541692024}
+  mapCamera: {fileID: 1108103327}
 --- !u!1 &1530816506
 GameObject:
   m_ObjectHideFlags: 0
