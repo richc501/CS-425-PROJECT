@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class healthObject : MonoBehaviour {
     public float health = 100;
@@ -33,7 +34,8 @@ public class healthObject : MonoBehaviour {
         healthText.text = ((int)health).ToString();
         if (health<0)
         {
-            health = 1;
+            health = 0;
+            healthText.text = ((int)health).ToString();
             dead();
         }
     }
@@ -41,12 +43,19 @@ public class healthObject : MonoBehaviour {
     public void DoHealOnPlayer(int healAmount)
     {
         health += healAmount;
+        if(health>(health+overHealth))
+        {
+            health = 100 + overHealth;
+        }
         healthText.text = ((int)health).ToString();
     }
 
     void dead()
     {
         //make player die
+        SceneManager.LoadScene("dead");
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
 }
