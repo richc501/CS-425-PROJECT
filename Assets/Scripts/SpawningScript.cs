@@ -87,8 +87,7 @@ public class SpawningScript : MonoBehaviour
             next = tiles[difficulty][Random.Range(0, tiles[difficulty].Length)];
         //determine where to spawn
         int spawn = 0;
-        Vector3 size = next.GetComponent<Renderer>().bounds.size;
-        //Debug.Log(size);
+
         do
         {
             spawn = Random.Range(p.min, p.max);
