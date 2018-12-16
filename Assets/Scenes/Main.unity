@@ -2998,7 +2998,7 @@ MonoBehaviour:
   JumpSpeed: 10
   Gravity: 20
   maxClimbTime: 10
-  RunSpeedIncrease: 10
+  RunSpeedIncrease: 40
   RampUpTime: 0.75
 --- !u!114 &1441701147
 MonoBehaviour:
@@ -3767,7 +3767,7 @@ Prefab:
     - target: {fileID: 114949977757538456, guid: 14ac60ad1c277444d88b6751f143257a,
         type: 2}
       propertyPath: folders.Array.data[0]
-      value: Tiles\Level2
+      value: Tiles\Level1
       objectReference: {fileID: 0}
     - target: {fileID: 114949977757538456, guid: 14ac60ad1c277444d88b6751f143257a,
         type: 2}

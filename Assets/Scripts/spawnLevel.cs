@@ -8,7 +8,7 @@ public class spawnLevel : MonoBehaviour {
     public GameObject level;
     public float yIncrease = 1f;
 	void Start () {
-        Vector3 pos = transform.position ;
+        Vector3 pos = transform.position + new Vector3(0, yIncrease, 0);
         //Debug.Log(pos);
 		GameObject lvl = Instantiate(level, pos, new Quaternion()) as GameObject;
     }
