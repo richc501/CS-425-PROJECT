@@ -70,18 +70,19 @@ public class TurretMovement : MonoBehaviour {
             spotted = false;
 
         //Debug.DrawLine(transform.position, target.transform.position, Color.blue);
-        
-        
+
+
         //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 100, Color.red);
 
         RaycastHit hit;
-        if (Physics.Linecast(transform.position, target.transform.position, out hit)) {
-            
+        if (Physics.Linecast(transform.position, target.transform.position, out hit))
+        {
+
             if (hit.transform.tag != "Player")
             {
                 spotted = false;
                 //Debug.Log(spotted);
-                
+
             }
         }
         rotateGun(step);
@@ -133,14 +134,17 @@ public class TurretMovement : MonoBehaviour {
             RaycastHit shoot;
             if (Physics.Raycast(t.position, t.transform.TransformDirection(Vector3.forward), out shoot))
             {
-                float targetDistance = shoot.distance;
-                if (targetDistance < maxDistance)
+                if (shoot.transform.tag.Equals("Player"))
                 {
-                    if (!hitSound.isPlaying)
+                    float targetDistance = shoot.distance;
+                    if (targetDistance < maxDistance)
                     {
-                        hitSound.Play();
+                        if (!hitSound.isPlaying)
+                        {
+                            hitSound.Play();
+                        }
+                        healthObj.GetComponent<healthObject>().DoDamageOnPlayer(damageAmount);
                     }
-                    healthObj.GetComponent<healthObject>().DoDamageOnPlayer(damageAmount);
                 }
             }
         }
