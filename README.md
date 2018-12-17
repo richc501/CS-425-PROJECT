@@ -29,4 +29,8 @@ Hardcore Parkour is a procedurally generated parkour simulator.
 >- Enemy Turrets https://assetstore.unity.com/packages/3d/characters/robots/enemy-turrets-27858
 >- Military First Aid, Health Kit model https://www.turbosquid.com/FullPreview/Index.cfm/ID/1284968
 
-# [Video Demo](https://youtu.be/DfKO-29EAg4)
+# [Video Demo]
+-> (https://youtu.be/DfKO-29EAg4)
+
+# [Gameplay Video]
+-> (https://www.youtube.com/watch?v=4seMpyHPecU&feature=youtu.be)
