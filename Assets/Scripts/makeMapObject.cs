@@ -11,7 +11,7 @@ public class makeMapObject : MonoBehaviour {
         Collider[] hit = Physics.OverlapSphere(transform.position, 149);
         //if we didn't hit anything return true;
         foreach(Collider c in hit){
-            if(!gameObject.name.Equals("Goal"))
+            if(!c.tag.Equals("Goal"))
             Destroy(c.gameObject);
         }
         MiniMapController.RegisterMapObject(this.gameObject, image);
