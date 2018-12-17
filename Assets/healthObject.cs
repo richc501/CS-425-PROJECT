@@ -32,7 +32,7 @@ public class healthObject : MonoBehaviour {
     {
         health -= damageAmount;
         healthText.text = ((int)health).ToString();
-        if (health<0)
+        if (health<=0)
         {
             health = 0;
             healthText.text = ((int)health).ToString();
