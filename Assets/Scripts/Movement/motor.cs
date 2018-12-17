@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 
@@ -96,6 +97,19 @@ public class motor : MonoBehaviour {
             mouseCam = false;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+        }
+        else if (Input.GetKeyDown(KeyCode.P))
+        {
+            PlayerPrefs.SetInt("difficulty", PlayerPrefs.GetInt("difficulty", 0) + 1);
+            Debug.Log(PlayerPrefs.GetInt("difficulty"));
+                if (PlayerPrefs.GetInt("difficulty") >= 2)
+                {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                SceneManager.LoadScene("Win");
+                }
+                SceneManager.LoadScene("main");
+          
         }
     }
 

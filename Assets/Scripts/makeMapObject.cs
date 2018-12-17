@@ -8,6 +8,11 @@ public class makeMapObject : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Collider[] hit = Physics.OverlapSphere(transform.position, 149);
+        //if we didn't hit anything return true;
+        foreach(Collider c in hit){
+            Destroy(c.gameObject);
+        }
         MiniMapController.RegisterMapObject(this.gameObject, image);
 	}
 	

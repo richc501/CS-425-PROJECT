@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 
 public class SpawningScript : MonoBehaviour
@@ -47,12 +48,14 @@ public class SpawningScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        
         difficulty = PlayerPrefs.GetInt("difficulty",0);
         //make 2D array of size[numOfLevels][determined at runtime]
-        if (difficulty > 1||difficulty<0) {
+        if (difficulty > 2||difficulty<0) {
             PlayerPrefs.SetInt("difficulty", 0);
             difficulty = 0;
         }
+
         tiles = new GameObject[folders.Length][];
 
         //load the tiles into the correct arrays
@@ -78,7 +81,6 @@ public class SpawningScript : MonoBehaviour
 
     Vector3 spawnNext(Path p, int numSpawned)
     {
-        Debug.Log(tiles[difficulty].Length);
 
         Vector3 pos = p.pos;
         if (numSpawned == max + 1)
@@ -156,7 +158,6 @@ public class SpawningScript : MonoBehaviour
         if (hit.Length == 0)
             return true;
         else { 
-            Debug.Log("Position: " + pos.ToString() + "Occupied");
             return false;
         }
             
