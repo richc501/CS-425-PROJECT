@@ -10,6 +10,7 @@ TagManager:
   - SecondCamera
   - BulletSpawn
   - Mine
+  - Goal
   layers:
   - Default
   - TransparentFX
