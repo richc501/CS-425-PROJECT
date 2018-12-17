@@ -3725,7 +3725,7 @@ Prefab:
     - target: {fileID: 114949977757538456, guid: 14ac60ad1c277444d88b6751f143257a,
         type: 2}
       propertyPath: folders.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4028581045223336, guid: 14ac60ad1c277444d88b6751f143257a, type: 2}
       propertyPath: m_LocalPosition.x
