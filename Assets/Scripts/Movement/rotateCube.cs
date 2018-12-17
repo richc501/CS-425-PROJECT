@@ -15,7 +15,7 @@ public class rotateCube : MonoBehaviour {
     void OnTriggerEnter(Collider col)
     {
         PlayerPrefs.SetInt("difficulty", 1);
-        if (col.gameObject.name == "Player")
+        if (col.gameObject.tag == "Player")
         {
             SceneManager.LoadScene("main");
         }
