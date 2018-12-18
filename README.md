@@ -20,7 +20,7 @@ Hardcore Parkour is a procedurally generated parkour simulator.
 >- WASD to move
 >- SPACE to Jump
 >- Hold space and W while facing a wall to your left, right, or in front of you to wall run
->- Move Mouse to aim and Mouse 1 to shoot
+>- Move Mouse to aim and Click Mouse 1 to shoot
 
 
 # Libraries Used
