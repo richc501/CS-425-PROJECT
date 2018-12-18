@@ -16,6 +16,13 @@ Hardcore Parkour is a procedurally generated parkour simulator.
 
 >- With your gun, blast your way through turrets, mines, and your own fear of incompetance.
 
+# How to Play
+> WASD to move
+> SPACE to Jump
+> Hold space and W while facing a wall to your left, right, or in front of you to wall run
+> Move Mouse to aim and Mouse 1 to shoot
+
+
 # Libraries Used
 
 >- UFPS Ultimate FPS https://assetstore.unity.com/packages/templates/systems/ufps-ultimate-fps-106748
